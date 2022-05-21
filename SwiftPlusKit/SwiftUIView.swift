@@ -30,6 +30,7 @@ struct SwiftUIView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UISlider, context: Context) {
+        uiView.thumbTintColor = UIColor(red: 1, green: 0, blue: 0, alpha: CGFloat(score) / 100)
             uiView.setValue(sliderValue, animated: true)
     }
     
