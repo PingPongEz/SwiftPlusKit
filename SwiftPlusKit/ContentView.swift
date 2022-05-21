@@ -20,20 +20,26 @@ struct ContentView: View {
             Text("Сдвинь меня ближе к: \(targetValue)")
                 .font(.system(size: 13))
                 .padding(.bottom, 16)
+            
             HStack {
                 Text("0")
                     .frame(width: 29)
                     .padding(.leading, 16)
+                
                 SwiftUIView(sliderValue: $currentValue, targetValue: $targetValue, score: $score)
+                
                 Text("100")
                     .frame(width: 29)
                     .padding(.trailing, 16)
             }
             .padding(.bottom, 16)
+            
             HStack {
                 ResultButton(isPresented: $isPresented)
                     .padding(.leading, 100)
+                
                 Spacer()
+                
                 NewGameButton(action: shufle)
                     .padding(.trailing, 100)
             }
@@ -57,7 +63,7 @@ struct ContentView_Previews: PreviewProvider {
 
 extension ContentView {
     private func shufle() {
-        withAnimation(.spring(response: 1, dampingFraction: 1, blendDuration: 1)) {
+        withAnimation(.linear) {
             currentValue = Float.random(in: 0...100)
             targetValue = Int.random(in: 0...100)
             score = 100 - (abs(targetValue - lroundf(currentValue)))

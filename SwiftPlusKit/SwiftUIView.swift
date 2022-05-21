@@ -25,13 +25,12 @@ struct SwiftUIView: UIViewRepresentable {
             for: .valueChanged
         )
         slider.thumbTintColor = .red
-        //Я тут пытался сделать так чтобы при перезагрузке игры прозрачность становилась сразу такой какой надо
         
         return slider
     }
     
     func updateUIView(_ uiView: UISlider, context: Context) {
-        uiView.value = sliderValue
+            uiView.setValue(sliderValue, animated: true)
     }
     
     func makeCoordinator() -> Coordinator {
