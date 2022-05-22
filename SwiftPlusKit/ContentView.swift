@@ -10,9 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var currentValue: Float = 0
-    @State private var targetValue = 0
-    @State private var score = 0
     @State private var isPresented = false
+    @State private var targetValue = 0
+    
+    var score: Int {
+        100 - (abs(targetValue - lroundf(currentValue)))
+    }
     
     var body: some View {
         
@@ -26,7 +29,7 @@ struct ContentView: View {
                     .frame(width: 29)
                     .padding(.leading, 16)
                 
-                SwiftUIView(sliderValue: $currentValue, targetValue: $targetValue, score: $score)
+                SwiftUIView(sliderValue: $currentValue, sliderOpp: score, color: .red)
                 
                 Text("100")
                     .frame(width: 29)
@@ -66,7 +69,6 @@ extension ContentView {
         withAnimation(.linear) {
             currentValue = Float.random(in: 0...100)
             targetValue = Int.random(in: 0...100)
-            score = 100 - (abs(targetValue - lroundf(currentValue)))
         }
     }
 }
